@@ -37,3 +37,53 @@ li:hover {
     color: white;
     transition: 0.3s;
 }
+/* تنسيق الجدول */
+table {
+    width: 90%;
+    margin: 20px auto;
+    border-collapse: collapse;
+    background-color: #fff;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+th, td {
+    border: 1px solid #ddd;
+    padding: 10px;
+    text-align: center;
+}
+th {
+    background-color: #3498db;
+    color: white;
+}
+tr:hover {
+    background-color: #f1f1f1;
+}
+a {
+    color: #3498db;
+    text-decoration: none;
+}
+a:hover {
+    text-decoration: underline;
+}
+.flex-row {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: 30px;
+    margin: 20px auto;
+    max-width: 1100px;
+}
+.event-img {
+    flex: 1;
+    min-width: 400px;   
+    max-width: 600px;   
+    width: 100%;
+    border-radius: 10px;
+    display: block;
+    margin: 0 auto;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+}
+.right-content {
+    flex: 1;
+    text-align: center;
+}
