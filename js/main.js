@@ -25,24 +25,36 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
   
-    function showAlert(message, type) {
-        const alertPlaceholder = document.createElement('div');
-        alertPlaceholder.innerHTML = `
-            <div class="alert alert-${type} alert-dismissible fade show mt-3" role="alert">
-                ${message}
-                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-            </div>
-        `;
-     
-        const formButton = document.querySelector('.d-grid');
-        formButton.parentNode.insertBefore(alertPlaceholder, formButton);
+   function showAlert(message, type) {
+    const alertPlaceholder = document.createElement('div');
+    alertPlaceholder.innerHTML = `
+        <div class="alert alert-${type} alert-dismissible fade show mt-3" role="alert">
+            ${message}
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    `;
+    
+    const formButton = document.querySelector('.d-grid');
+    formButton.parentNode.insertBefore(alertPlaceholder, formButton);
 
+    
+    setTimeout(() => {
        
-        setTimeout(() => {
-            const bsAlert = new bootstrap.Alert(alertPlaceholder.firstElementChild);
-            bsAlert.close();
-        }, 5000);
-    }
+        const alertElement = alertPlaceholder.querySelector('.alert');
+        if (alertElement) {
+
+            if (window.bootstrap && bootstrap.Alert) {
+                const bsAlert = bootstrap.Alert.getOrCreateInstance(alertElement);
+                bsAlert.close();
+            }
+            
+            
+            setTimeout(() => {
+                alertPlaceholder.remove();
+            }, 600);
+        }
+    }, 5000);
+}
 
    
     function validateEmail(email) {
