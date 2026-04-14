@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>اتصل بنا</title>
+   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.rtl.min.css" rel="stylesheet">
+   <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+         <nav class="navbar navbar-expand-lg navbar-dark bg-dark shadow-sm">
+    <div class="container">
+        <a class="navbar-brand fw-bold" href="index.html">دليل الفعاليات الجامعية</a>
+        
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav me-auto">
+                <li class="nav-item">
+                    <a class="nav-link active" href="index.html">الرئيسية</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="events.html">الفعاليات</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="about.html">عن الدليل</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="contact.html">اتصل بنا</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+   <main class="container my-5">
+    <div class="row justify-content-center">
+        <div class="col-md-8 text-center mb-5">
+            <h1 class="fw-bold text-primary">تواصل معنا</h1>
+            <p class="text-muted">لديك استفسار عن فعالية معينة؟ نحن هنا لمساعدتك.</p>
+        </div>
+
+        <div class="col-md-7">
+            <div class="card shadow-sm border-0 p-4">
+                <form>
+                    <div class="mb-3 text-end">
+                        <label for="name" class="form-label">الاسم الكامل</label>
+                        <input type="text" class="form-control" id="name" placeholder="أدخل اسمك هنا" required>
+                    </div>
+                    
+                    <div class="mb-3 text-end">
+                        <label for="email" class="form-label">البريد الإلكتروني</label>
+                        <input type="email" class="form-control" id="email" placeholder="name@example.com" required>
+                    </div>
+
+                    <div class="mb-3 text-end">
+                        <label for="subject" class="form-label">الموضوع</label>
+                        <select class="form-select" id="subject">
+                            <option selected>استفسار عام</option>
+                            <option value="1">تسجيل في فعالية</option>
+                            <option value="2">اقتراح فعالية جديدة</option>
+                            <option value="3">مشكلة تقنية</option>
+                        </select>
+                    </div>
+
+                    <div class="mb-3 text-end">
+                        <label for="message" class="form-label">رسالتك</label>
+                        <textarea class="form-control" id="message" rows="5" placeholder="اكتب تفاصيل استفسارك هنا..." required></textarea>
+                    </div>
+
+                    <div class="d-grid">
+                        <button type="submit" class="btn btn-primary btn-lg">إرسال الرسالة</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</main>
+<footer class="bg-dark text-white text-center py-4 mt-5 shadow-lg">
+    <div class="container">
+        <p class="mb-1 fs-5">© 2026 جميع الحقوق محفوظة - دليل فعاليات الجامعة الافتراضية</p>
+        <small class="text-white-50">(BWP401) تم تطوير هذا الموقع كمشروع لمادة تطوير الويب </small>
+    </div>
+</footer>
+</body>
+</html>
