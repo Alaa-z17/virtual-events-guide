@@ -62,3 +62,28 @@ document.addEventListener('DOMContentLoaded', function() {
         return re.test(email);
     }
 });
+
+document.addEventListener('DOMContentLoaded', function(){
+    const urlParams = new URLSearchParams(window.location.search);
+    const eventType = urlParams.get('type');
+    
+    let eventImg = document.getElementById('main-event-img');
+    let eventTitle = document.querySelector('h1.fw-bold');
+    let eventDescription = document.getElementById('eventDesc'); 
+
+    if (eventType === 'github.png') {
+        if (eventImg) eventImg.src = 'img/GitHubEvent.png';
+        if (eventTitle) eventTitle.innerText = 'ورشة عمل: أساسيات GitHub للطلاب';
+        if (eventDescription) eventDescription.innerHTML = 'لا يكتمل عمل المبرمج بدون إتقان أدوات التحكم بالنسخ (Version Control). انضم إلينا لتعلم كيفية استخدام Git ومنصة GitHub لرفع مشاريعك، وإدارة الـ Repositories، والتعاون مع فريقك البرمجي بفعالية. سنشرح مفاهيم الـ Commits, Branches, و Pull Requests بطريقة عملية تساعدك في مسيرتك المهنية والجامعية';
+    }
+    else if (eventType === 'WebFoundations.png') {
+        if (eventImg) eventImg.src = 'img/WebFoundations.png';
+        if (eventTitle) eventTitle.innerText = 'دورة تطوير الويب HTML/CSS'; // نص واحد فقط
+        if (eventDescription) eventDescription.innerHTML = 'انطلق في رحلة بناء المواقع الإلكترونية من الصفر. في هذه الفعالية، سنغوص في عالم HTML5 لبناء هيكل الصفحات، و CSS3 لإضافة التصاميم الجذابة والتنسيقات المتجاوبة (Responsive Design). سنركز بشكل خاص على استخدام الـ Flexbox و Grid لضمان ظهور موقعك بشكل مثالي على كافة الشاشات، تماماً كما نفعل في مشروعنا الحالي!';
+    }
+    else if (eventType === 'IntroductoryMeeting.png') {
+        if (eventImg) eventImg.src = 'img/IntroductoryMeeting.png';
+        if (eventTitle) eventTitle.innerText = 'اللقاء التعريفي السنوي للطلاب الجدد'; // نص واحد
+        if (eventDescription) eventDescription.innerHTML ='هل أنت طالب جديد في الجامعة الافتراضية السورية؟ هذا اللقاء هو خطوتك الأولى للنجاح. سنستعرض فيه آلية الدراسة في الجامعة، كيفية استخدام نظام إدارة التعلم (LMS)، وطريقة التواصل مع المنسقين الأكاديميين. كما سيتضمن اللقاء فقرة للإجابة على كافة استفساراتكم حول الامتحانات والمراكز النفاذة بوضوح وشفافية';
+    }
+});
