@@ -76,3 +76,12 @@ h1, h3 {
     background-color: #343a40;
     transform: translateX(-5px); 
 }
+
+.carousel-item img {
+    filter: brightness(0.8);
+}
+
+.carousel-caption {
+    padding: 20px;
+    bottom: 30px;
+}
