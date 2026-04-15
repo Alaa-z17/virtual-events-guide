@@ -1,69 +1,100 @@
-
 document.addEventListener('DOMContentLoaded', function() {
     
-
     const contactForm = document.querySelector('form');
     
     if (contactForm) {
         contactForm.addEventListener('submit', function(event) {
             event.preventDefault(); 
           
-            const name = document.getElementById('name').value.trim();
-            const email = document.getElementById('email').value.trim();
-            const message = document.getElementById('message').value.trim();
+            // التأكد من وجود العناصر قبل قراءة قيمتها
+            const nameEl = document.getElementById('name');
+            const emailEl = document.getElementById('email');
+            const messageEl = document.getElementById('message');
             
-            
-            if (name === "" || email === "" || message === "") {
-                showAlert('! يرجى ملء جميع الحقول المطلوبة', 'danger');
-            } else if (!validateEmail(email)) {
-                showAlert('! يرجى إدخال بريد إلكتروني صحيح', 'warning');
-            } else {
-                showAlert('تم إرسال رسالتك بنجاح! شكراً لتواصلك معنا', 'success');
-                contactForm.reset(); 
+            if (nameEl && emailEl && messageEl) {
+                const name = nameEl.value.trim();
+                const email = emailEl.value.trim();
+                const message = messageEl.value.trim();
+                
+                if (name === "" || email === "" || message === "") {
+                    showAlert('! يرجى ملء جميع الحقول المطلوبة', 'danger');
+                } else if (!validateEmail(email)) {
+                    showAlert('! يرجى إدخال بريد إلكتروني صحيح', 'warning');
+                } else {
+                    showAlert('تم إرسال رسالتك بنجاح! شكراً لتواصلك معنا', 'success');
+                    contactForm.reset(); 
+                }
             }
         });
     }
 
-  
-   function showAlert(message, type) {
-    const alertPlaceholder = document.createElement('div');
-    alertPlaceholder.innerHTML = `
-        <div class="alert alert-${type} alert-dismissible fade show mt-3" role="alert">
-            ${message}
-            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-        </div>
-    `;
-    
-    const formButton = document.querySelector('.d-grid');
-    formButton.parentNode.insertBefore(alertPlaceholder, formButton);
-
-    
-    setTimeout(() => {
-       
-        const alertElement = alertPlaceholder.querySelector('.alert');
-        if (alertElement) {
-
-            if (window.bootstrap && bootstrap.Alert) {
-                const bsAlert = bootstrap.Alert.getOrCreateInstance(alertElement);
-                bsAlert.close();
-            }
-            
+    function showAlert(message, type) {
+        const alertPlaceholder = document.createElement('div');
+        alertPlaceholder.innerHTML = `
+            <div class="alert alert-${type} alert-dismissible fade show mt-3" role="alert">
+                ${message}
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        `;
+        
+        const formButton = document.querySelector('.d-grid');
+        if (formButton) {
+            formButton.parentNode.insertBefore(alertPlaceholder, formButton);
             
             setTimeout(() => {
-                alertPlaceholder.remove();
-            }, 600);
+                const alertElement = alertPlaceholder.querySelector('.alert');
+                if (alertElement) {
+                    if (window.bootstrap && bootstrap.Alert) {
+                        const bsAlert = bootstrap.Alert.getOrCreateInstance(alertElement);
+                        bsAlert.close();
+                    }
+                    setTimeout(() => {
+                        alertPlaceholder.remove();
+                    }, 600);
+                }
+            }, 5000);
         }
-    }, 5000);
-}
+    }
 
-   
     function validateEmail(email) {
         const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
         return re.test(email);
     }
-});
 
-document.addEventListener('DOMContentLoaded', function(){
+    const searchInput = document.getElementById('searchInput');
+    const searchBtn = document.getElementById('searchBtn');
+    const cards = document.querySelectorAll('.event-card');
+
+    function filterEvents() {
+        if (!searchInput) return; // حماية في حال لم يكن العنصر موجوداً بالصفحة
+        const searchTerm = searchInput.value.toLowerCase().trim();
+
+        cards.forEach(card => {
+            const titleEl = card.querySelector('.card-title');
+            const textEl = card.querySelector('.card-text');
+            
+            if (titleEl && textEl) {
+                const title = titleEl.innerText.toLowerCase();
+                const text = textEl.innerText.toLowerCase();
+
+                if (title.includes(searchTerm) || text.includes(searchTerm)) {
+                    card.style.display = "block"; 
+                } else {
+                    card.style.display = "none"; 
+                }
+            }
+        });
+    }
+
+    if (searchBtn) {
+        searchBtn.addEventListener('click', filterEvents);
+    }
+
+    if (searchInput) {
+        searchInput.addEventListener('keyup', filterEvents);
+    }
+
+
     const urlParams = new URLSearchParams(window.location.search);
     const eventType = urlParams.get('type');
     
@@ -78,12 +109,12 @@ document.addEventListener('DOMContentLoaded', function(){
     }
     else if (eventType === 'WebFoundations.png') {
         if (eventImg) eventImg.src = 'img/WebFoundations.png';
-        if (eventTitle) eventTitle.innerText = 'دورة تطوير الويب HTML/CSS'; // نص واحد فقط
+        if (eventTitle) eventTitle.innerText = 'دورة تطوير الويب HTML/CSS'; 
         if (eventDescription) eventDescription.innerHTML = 'انطلق في رحلة بناء المواقع الإلكترونية من الصفر. في هذه الفعالية، سنغوص في عالم HTML5 لبناء هيكل الصفحات، و CSS3 لإضافة التصاميم الجذابة والتنسيقات المتجاوبة (Responsive Design). سنركز بشكل خاص على استخدام الـ Flexbox و Grid لضمان ظهور موقعك بشكل مثالي على كافة الشاشات، تماماً كما نفعل في مشروعنا الحالي!';
     }
     else if (eventType === 'IntroductoryMeeting.png') {
         if (eventImg) eventImg.src = 'img/IntroductoryMeeting.png';
-        if (eventTitle) eventTitle.innerText = 'اللقاء التعريفي السنوي للطلاب الجدد'; // نص واحد
+        if (eventTitle) eventTitle.innerText = 'اللقاء التعريفي السنوي للطلاب الجدد'; 
         if (eventDescription) eventDescription.innerHTML ='هل أنت طالب جديد في الجامعة الافتراضية السورية؟ هذا اللقاء هو خطوتك الأولى للنجاح. سنستعرض فيه آلية الدراسة في الجامعة، كيفية استخدام نظام إدارة التعلم (LMS)، وطريقة التواصل مع المنسقين الأكاديميين. كما سيتضمن اللقاء فقرة للإجابة على كافة استفساراتكم حول الامتحانات والمراكز النفاذة بوضوح وشفافية';
     }
 });
